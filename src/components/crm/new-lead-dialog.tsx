@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Plus } from "lucide-react";
@@ -70,7 +70,7 @@ export function NewLeadDialog({ onCreate }: { onCreate: (lead: Lead) => void }) 
     },
   });
 
-  const referenceType = form.watch("referenceType");
+  const referenceType = useWatch({ control: form.control, name: "referenceType" });
 
   function onSubmit(values: FormValues) {
     const seq = String(Math.floor(Math.random() * 900) + 100).padStart(6, "0");
