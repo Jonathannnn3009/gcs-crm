@@ -1,17 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download, SlidersHorizontal } from "lucide-react";
+import { ChevronDown, Download, SlidersHorizontal } from "lucide-react";
 
-import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { leads } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
@@ -20,19 +12,40 @@ export const Route = createFileRoute("/_app/reports")({
   component: Reports,
 });
 
+// Plain native <select> here on purpose — no Radix, no popper/portal —
+// this page just needs to look filterable for the prototype, not host
+// five live Radix Select instances at once.
+function PlainSelect({ label, options }: { label: string; options: string[] }) {
+  return (
+    <div className="space-y-1">
+      <label className="text-xs text-muted-foreground">{label}</label>
+      <div className="relative">
+        <select className="h-9 w-full appearance-none rounded-md border border-input bg-card px-3 pr-8 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring">
+          {options.map((opt) => (
+            <option key={opt}>{opt}</option>
+          ))}
+        </select>
+        <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+      </div>
+    </div>
+  );
+}
+
 function Reports() {
   return (
     <>
-      <PageHeader
-        title="Reports"
-        description="Analytics and detailed data exports for the entire loan lifecycle."
-        action={
-          <Button variant="outline">
-            <Download className="mr-1.5 h-4 w-4" />
-            Export Excel
-          </Button>
-        }
-      />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">Reports</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Analytics and detailed data exports for the entire loan lifecycle.
+          </p>
+        </div>
+        <Button variant="outline">
+          <Download className="mr-1.5 h-4 w-4" />
+          Export Excel
+        </Button>
+      </div>
       <Card className="surface-card">
         <CardContent className="space-y-5 p-5">
           <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-4">
@@ -41,74 +54,11 @@ function Reports() {
               Filters
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-              <div className="space-y-1">
-                <label className="text-xs text-muted-foreground">Type</label>
-                <Select defaultValue="leads">
-                  <SelectTrigger className="bg-card">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="leads">Leads</SelectItem>
-                    <SelectItem value="applications">Applications</SelectItem>
-                    <SelectItem value="sanctions">Sanctions</SelectItem>
-                    <SelectItem value="disbursements">Disbursements</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs text-muted-foreground">Range</label>
-                <Select defaultValue="this-month">
-                  <SelectTrigger className="bg-card">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="this-month">This Month</SelectItem>
-                    <SelectItem value="last-month">Last Month</SelectItem>
-                    <SelectItem value="custom">Custom Range</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs text-muted-foreground">Status</label>
-                <Select defaultValue="all">
-                  <SelectTrigger className="bg-card">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Statuses</SelectItem>
-                    <SelectItem value="pending">Pending</SelectItem>
-                    <SelectItem value="done">Done</SelectItem>
-                    <SelectItem value="rejected">Rejected</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs text-muted-foreground">Loan Type</label>
-                <Select defaultValue="all">
-                  <SelectTrigger className="bg-card">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Loan Types</SelectItem>
-                    <SelectItem value="home">Home Loan</SelectItem>
-                    <SelectItem value="business">Business Loan</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs text-muted-foreground">Team</label>
-                <Select defaultValue="all">
-                  <SelectTrigger className="bg-card">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Teams</SelectItem>
-                    <SelectItem value="mumbai">Mumbai</SelectItem>
-                    <SelectItem value="thane">Thane</SelectItem>
-                    <SelectItem value="pune">Pune</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              <PlainSelect label="Type" options={["Leads", "Applications", "Sanctions", "Disbursements"]} />
+              <PlainSelect label="Range" options={["This Month", "Last Month", "Custom Range"]} />
+              <PlainSelect label="Status" options={["All Statuses", "Pending", "Done", "Rejected"]} />
+              <PlainSelect label="Loan Type" options={["All Loan Types", "Home Loan", "Business Loan"]} />
+              <PlainSelect label="Team" options={["All Teams", "Mumbai", "Thane", "Pune"]} />
             </div>
           </div>
 
