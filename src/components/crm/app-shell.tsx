@@ -8,9 +8,6 @@ import { AppSidebar } from "@/components/crm/app-sidebar";
 
 // Rendered once by the _app layout route and kept mounted across
 // navigations — child routes render into <Outlet/> via <PageHeader>.
-// Do NOT render SidebarProvider per-page: on mobile the sidebar is a
-// Radix dialog, and tearing it down mid-navigation (from inside its own
-// link's click handler) hangs the page.
 export function AppShell() {
   return (
     <SidebarProvider>
