@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Download } from "lucide-react";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,22 +16,23 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { leads } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
 
-export const Route = createFileRoute("/reports")({
+export const Route = createFileRoute("/_app/reports")({
   component: Reports,
 });
 
 function Reports() {
   return (
-    <CrmShell
-      title="Reports"
-      description="Analytics and detailed data exports for the entire loan lifecycle."
-      action={
-        <Button variant="outline">
-          <Download className="mr-1.5 h-4 w-4" />
-          Export Excel
-        </Button>
-      }
-    >
+    <>
+      <PageHeader
+        title="Reports"
+        description="Analytics and detailed data exports for the entire loan lifecycle."
+        action={
+          <Button variant="outline">
+            <Download className="mr-1.5 h-4 w-4" />
+            Export Excel
+          </Button>
+        }
+      />
       <Card className="surface-card">
         <CardContent className="p-4">
           <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
@@ -125,6 +126,6 @@ function Reports() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -8,13 +8,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { disbursements } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
 
-export const Route = createFileRoute("/disbursements")({
+export const Route = createFileRoute("/_app/disbursements")({
   component: Disbursements,
 });
 
 function Disbursements() {
   return (
-    <CrmShell title="Disbursements" description="Track finalised fund transfers.">
+    <>
+      <PageHeader title="Disbursements" description="Track finalised fund transfers." />
       <Card className="surface-card">
         <CardContent className="p-4">
           <Table>
@@ -60,6 +61,6 @@ function Disbursements() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

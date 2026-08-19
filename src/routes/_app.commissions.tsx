@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { commissions } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
 
-export const Route = createFileRoute("/commissions")({
+export const Route = createFileRoute("/_app/commissions")({
   component: Commissions,
 });
 
@@ -16,7 +16,8 @@ function Commissions() {
   const totalRemaining = commissions.reduce((s, c) => s + c.remaining, 0);
 
   return (
-    <CrmShell title="Commissions" description="Payout breakdown and status tracking.">
+    <>
+      <PageHeader title="Commissions" description="Payout breakdown and status tracking." />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Card className="surface-card">
           <CardContent className="p-5">
@@ -68,6 +69,6 @@ function Commissions() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

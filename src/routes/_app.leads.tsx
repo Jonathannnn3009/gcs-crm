@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { NewLeadDialog } from "@/components/crm/new-lead-dialog";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +11,7 @@ import { leads as initialLeads, type Lead } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
 import { Search } from "lucide-react";
 
-export const Route = createFileRoute("/leads")({
+export const Route = createFileRoute("/_app/leads")({
   component: Leads,
 });
 
@@ -27,11 +27,12 @@ function Leads() {
   );
 
   return (
-    <CrmShell
-      title="Leads"
-      description="Source, track and manage all prospective loans."
-      action={<NewLeadDialog onCreate={(lead) => setLeads((prev) => [lead, ...prev])} />}
-    >
+    <>
+      <PageHeader
+        title="Leads"
+        description="Source, track and manage all prospective loans."
+        action={<NewLeadDialog onCreate={(lead) => setLeads((prev) => [lead, ...prev])} />}
+      />
       <Card className="surface-card">
         <CardContent className="p-4">
           <div className="relative mb-4 max-w-sm">
@@ -92,6 +93,6 @@ function Leads() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,22 +9,23 @@ import { sourcingPartners } from "@/data/crm-mock";
 import { formatDate } from "@/lib/format";
 import { Plus } from "lucide-react";
 
-export const Route = createFileRoute("/sourcing-partners")({
+export const Route = createFileRoute("/_app/sourcing-partners")({
   component: SourcingPartners,
 });
 
 function SourcingPartners() {
   return (
-    <CrmShell
-      title="Sourcing Partners"
-      description="External referral partners who bring in leads."
-      action={
-        <Button className="bg-brand text-brand-foreground hover:bg-brand/90">
-          <Plus className="mr-1.5 h-4 w-4" />
-          Add Partner
-        </Button>
-      }
-    >
+    <>
+      <PageHeader
+        title="Sourcing Partners"
+        description="External referral partners who bring in leads."
+        action={
+          <Button className="bg-brand text-brand-foreground hover:bg-brand/90">
+            <Plus className="mr-1.5 h-4 w-4" />
+            Add Partner
+          </Button>
+        }
+      />
       <Card className="surface-card">
         <CardContent className="p-4">
           <Table>
@@ -58,6 +59,6 @@ function SourcingPartners() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

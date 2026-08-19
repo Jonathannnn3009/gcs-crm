@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { partners, loanTypes } from "@/data/crm-mock";
 
-export const Route = createFileRoute("/settings")({
+export const Route = createFileRoute("/_app/settings")({
   component: Settings,
 });
 
@@ -18,7 +18,8 @@ const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 
 function Settings() {
   return (
-    <CrmShell title="Settings" description="Manage masters and organisation configuration.">
+    <>
+      <PageHeader title="Settings" description="Manage masters and organisation configuration." />
       <Tabs defaultValue="banks">
         <TabsList>
           <TabsTrigger value="banks">Bank Master</TabsTrigger>
@@ -107,6 +108,6 @@ function Settings() {
           </Card>
         </TabsContent>
       </Tabs>
-    </CrmShell>
+    </>
   );
 }

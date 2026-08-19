@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Outlet } from "@tanstack/react-router";
 import { Bell, Search } from "lucide-react";
 
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
@@ -6,17 +6,12 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { AppSidebar } from "@/components/crm/app-sidebar";
 
-export function CrmShell({
-  title,
-  description,
-  action,
-  children,
-}: {
-  title: string;
-  description?: string;
-  action?: ReactNode;
-  children: ReactNode;
-}) {
+// Rendered once by the _app layout route and kept mounted across
+// navigations — child routes render into <Outlet/> via <PageHeader>.
+// Do NOT render SidebarProvider per-page: on mobile the sidebar is a
+// Radix dialog, and tearing it down mid-navigation (from inside its own
+// link's click handler) hangs the page.
+export function AppShell() {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -36,18 +31,7 @@ export function CrmShell({
           </div>
         </header>
         <main className="flex flex-1 flex-col gap-6 p-4 sm:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-                {title}
-              </h1>
-              {description ? (
-                <p className="mt-1 text-sm text-muted-foreground">{description}</p>
-              ) : null}
-            </div>
-            {action}
-          </div>
-          {children}
+          <Outlet />
         </main>
       </SidebarInset>
     </SidebarProvider>

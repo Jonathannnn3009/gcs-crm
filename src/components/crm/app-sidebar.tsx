@@ -23,6 +23,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { team } from "@/data/crm-mock";
@@ -62,6 +63,7 @@ const nav = [
 export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const admin = team[0];
+  const { isMobile, setOpenMobile } = useSidebar();
 
   return (
     <Sidebar collapsible="icon">
@@ -85,7 +87,7 @@ export function AppSidebar() {
                 {group.items.map((item) => (
                   <SidebarMenuItem key={item.to}>
                     <SidebarMenuButton asChild isActive={pathname === item.to} tooltip={item.title}>
-                      <Link to={item.to}>
+                      <Link to={item.to} onClick={() => isMobile && setOpenMobile(false)}>
                         <item.icon />
                         <span>{item.title}</span>
                       </Link>

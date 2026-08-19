@@ -1,19 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { applications } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
 
-export const Route = createFileRoute("/applications")({
+export const Route = createFileRoute("/_app/applications")({
   component: Applications,
 });
 
 function Applications() {
   return (
-    <CrmShell title="Applications" description="Manage underwriting workflows and file statuses.">
+    <>
+      <PageHeader title="Applications" description="Manage underwriting workflows and file statuses." />
       <Card className="surface-card">
         <CardContent className="p-4">
           <Table>
@@ -46,6 +47,6 @@ function Applications() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

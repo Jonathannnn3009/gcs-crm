@@ -1,19 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { sanctions } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
 
-export const Route = createFileRoute("/sanctions")({
+export const Route = createFileRoute("/_app/sanctions")({
   component: Sanctions,
 });
 
 function Sanctions() {
   return (
-    <CrmShell title="Sanctions" description="Review and finalise loan sanctions.">
+    <>
+      <PageHeader title="Sanctions" description="Review and finalise loan sanctions." />
       <Card className="surface-card">
         <CardContent className="p-4">
           <Table>
@@ -48,6 +49,6 @@ function Sanctions() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

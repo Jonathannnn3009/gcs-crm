@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -10,22 +10,23 @@ import { team } from "@/data/crm-mock";
 import { initials } from "@/lib/format";
 import { Plus } from "lucide-react";
 
-export const Route = createFileRoute("/team")({
+export const Route = createFileRoute("/_app/team")({
   component: Team,
 });
 
 function Team() {
   return (
-    <CrmShell
-      title="Team"
-      description="Manage internal staff and role-based access."
-      action={
-        <Button className="bg-brand text-brand-foreground hover:bg-brand/90">
-          <Plus className="mr-1.5 h-4 w-4" />
-          Add Staff
-        </Button>
-      }
-    >
+    <>
+      <PageHeader
+        title="Team"
+        description="Manage internal staff and role-based access."
+        action={
+          <Button className="bg-brand text-brand-foreground hover:bg-brand/90">
+            <Plus className="mr-1.5 h-4 w-4" />
+            Add Staff
+          </Button>
+        }
+      />
       <Card className="surface-card">
         <CardContent className="p-4">
           <Table>
@@ -66,6 +67,6 @@ function Team() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

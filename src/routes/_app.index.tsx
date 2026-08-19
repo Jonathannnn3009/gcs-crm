@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Users, FileText, BadgeCheck, Landmark, Wallet } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, Pie, PieChart, Cell, XAxis } from "recharts";
 
-import { CrmShell } from "@/components/crm/crm-shell";
+import { PageHeader } from "@/components/crm/page-header";
 import { StatCard } from "@/components/crm/stat-card";
 import { StatusBadge } from "@/components/crm/status-badge";
 import {
@@ -22,7 +22,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { leads, monthlyVolume, loanMix, applications, sanctions, disbursements, commissions } from "@/data/crm-mock";
 import { formatINR, formatDate } from "@/lib/format";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_app/")({
   component: Dashboard,
 });
 
@@ -36,7 +36,8 @@ function Dashboard() {
   const totalCommission = commissions.reduce((s, c) => s + c.totalCommission, 0);
 
   return (
-    <CrmShell title="Dashboard" description="Business snapshot across every stage of the loan pipeline.">
+    <>
+      <PageHeader title="Dashboard" description="Business snapshot across every stage of the loan pipeline." />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <StatCard label="Leads" value={String(leads.length)} icon={Users} trend="+2 this week" />
         <StatCard label="Applications" value={String(applications.length)} icon={FileText} />
@@ -148,6 +149,6 @@ function Dashboard() {
           </Table>
         </CardContent>
       </Card>
-    </CrmShell>
+    </>
   );
 }

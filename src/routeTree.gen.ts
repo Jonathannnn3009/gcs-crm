@@ -9,104 +9,110 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApplicationsRouteImport } from './routes/applications'
-import { Route as CommissionsRouteImport } from './routes/commissions'
-import { Route as DisbursementsRouteImport } from './routes/disbursements'
-import { Route as LeadsRouteImport } from './routes/leads'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as SanctionsRouteImport } from './routes/sanctions'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as SourcingPartnersRouteImport } from './routes/sourcing-partners'
-import { Route as TeamRouteImport } from './routes/team'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as AppIndexRouteImport } from './routes/_app.index'
+import { Route as AppApplicationsRouteImport } from './routes/_app.applications'
+import { Route as AppCommissionsRouteImport } from './routes/_app.commissions'
+import { Route as AppDisbursementsRouteImport } from './routes/_app.disbursements'
+import { Route as AppLeadsRouteImport } from './routes/_app.leads'
+import { Route as AppReportsRouteImport } from './routes/_app.reports'
+import { Route as AppSanctionsRouteImport } from './routes/_app.sanctions'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppSourcingPartnersRouteImport } from './routes/_app.sourcing-partners'
+import { Route as AppTeamRouteImport } from './routes/_app.team'
 
-const IndexRoute = IndexRouteImport.update({
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const ApplicationsRoute = ApplicationsRouteImport.update({
+const AppApplicationsRoute = AppApplicationsRouteImport.update({
   id: '/applications',
   path: '/applications',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const CommissionsRoute = CommissionsRouteImport.update({
+const AppCommissionsRoute = AppCommissionsRouteImport.update({
   id: '/commissions',
   path: '/commissions',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const DisbursementsRoute = DisbursementsRouteImport.update({
+const AppDisbursementsRoute = AppDisbursementsRouteImport.update({
   id: '/disbursements',
   path: '/disbursements',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const LeadsRoute = LeadsRouteImport.update({
+const AppLeadsRoute = AppLeadsRouteImport.update({
   id: '/leads',
   path: '/leads',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const ReportsRoute = ReportsRouteImport.update({
+const AppReportsRoute = AppReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const SanctionsRoute = SanctionsRouteImport.update({
+const AppSanctionsRoute = AppSanctionsRouteImport.update({
   id: '/sanctions',
   path: '/sanctions',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const SettingsRoute = SettingsRouteImport.update({
+const AppSettingsRoute = AppSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const SourcingPartnersRoute = SourcingPartnersRouteImport.update({
+const AppSourcingPartnersRoute = AppSourcingPartnersRouteImport.update({
   id: '/sourcing-partners',
   path: '/sourcing-partners',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const TeamRoute = TeamRouteImport.update({
+const AppTeamRoute = AppTeamRouteImport.update({
   id: '/team',
   path: '/team',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/applications': typeof ApplicationsRoute
-  '/commissions': typeof CommissionsRoute
-  '/disbursements': typeof DisbursementsRoute
-  '/leads': typeof LeadsRoute
-  '/reports': typeof ReportsRoute
-  '/sanctions': typeof SanctionsRoute
-  '/settings': typeof SettingsRoute
-  '/sourcing-partners': typeof SourcingPartnersRoute
-  '/team': typeof TeamRoute
+  '/': typeof AppIndexRoute
+  '/applications': typeof AppApplicationsRoute
+  '/commissions': typeof AppCommissionsRoute
+  '/disbursements': typeof AppDisbursementsRoute
+  '/leads': typeof AppLeadsRoute
+  '/reports': typeof AppReportsRoute
+  '/sanctions': typeof AppSanctionsRoute
+  '/settings': typeof AppSettingsRoute
+  '/sourcing-partners': typeof AppSourcingPartnersRoute
+  '/team': typeof AppTeamRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/applications': typeof ApplicationsRoute
-  '/commissions': typeof CommissionsRoute
-  '/disbursements': typeof DisbursementsRoute
-  '/leads': typeof LeadsRoute
-  '/reports': typeof ReportsRoute
-  '/sanctions': typeof SanctionsRoute
-  '/settings': typeof SettingsRoute
-  '/sourcing-partners': typeof SourcingPartnersRoute
-  '/team': typeof TeamRoute
+  '/applications': typeof AppApplicationsRoute
+  '/commissions': typeof AppCommissionsRoute
+  '/disbursements': typeof AppDisbursementsRoute
+  '/leads': typeof AppLeadsRoute
+  '/reports': typeof AppReportsRoute
+  '/sanctions': typeof AppSanctionsRoute
+  '/settings': typeof AppSettingsRoute
+  '/sourcing-partners': typeof AppSourcingPartnersRoute
+  '/team': typeof AppTeamRoute
+  '/': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/applications': typeof ApplicationsRoute
-  '/commissions': typeof CommissionsRoute
-  '/disbursements': typeof DisbursementsRoute
-  '/leads': typeof LeadsRoute
-  '/reports': typeof ReportsRoute
-  '/sanctions': typeof SanctionsRoute
-  '/settings': typeof SettingsRoute
-  '/sourcing-partners': typeof SourcingPartnersRoute
-  '/team': typeof TeamRoute
+  '/_app': typeof AppRouteWithChildren
+  '/_app/applications': typeof AppApplicationsRoute
+  '/_app/commissions': typeof AppCommissionsRoute
+  '/_app/disbursements': typeof AppDisbursementsRoute
+  '/_app/leads': typeof AppLeadsRoute
+  '/_app/reports': typeof AppReportsRoute
+  '/_app/sanctions': typeof AppSanctionsRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/sourcing-partners': typeof AppSourcingPartnersRoute
+  '/_app/team': typeof AppTeamRoute
+  '/_app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -123,7 +129,6 @@ export interface FileRouteTypes {
     | '/team'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/applications'
     | '/commissions'
     | '/disbursements'
@@ -133,119 +138,138 @@ export interface FileRouteTypes {
     | '/settings'
     | '/sourcing-partners'
     | '/team'
+    | '/'
   id:
     | '__root__'
-    | '/'
-    | '/applications'
-    | '/commissions'
-    | '/disbursements'
-    | '/leads'
-    | '/reports'
-    | '/sanctions'
-    | '/settings'
-    | '/sourcing-partners'
-    | '/team'
+    | '/_app'
+    | '/_app/applications'
+    | '/_app/commissions'
+    | '/_app/disbursements'
+    | '/_app/leads'
+    | '/_app/reports'
+    | '/_app/sanctions'
+    | '/_app/settings'
+    | '/_app/sourcing-partners'
+    | '/_app/team'
+    | '/_app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ApplicationsRoute: typeof ApplicationsRoute
-  CommissionsRoute: typeof CommissionsRoute
-  DisbursementsRoute: typeof DisbursementsRoute
-  LeadsRoute: typeof LeadsRoute
-  ReportsRoute: typeof ReportsRoute
-  SanctionsRoute: typeof SanctionsRoute
-  SettingsRoute: typeof SettingsRoute
-  SourcingPartnersRoute: typeof SourcingPartnersRoute
-  TeamRoute: typeof TeamRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/': {
+      id: '/_app/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/applications': {
-      id: '/applications'
+    '/_app/applications': {
+      id: '/_app/applications'
       path: '/applications'
       fullPath: '/applications'
-      preLoaderRoute: typeof ApplicationsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppApplicationsRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/commissions': {
-      id: '/commissions'
+    '/_app/commissions': {
+      id: '/_app/commissions'
       path: '/commissions'
       fullPath: '/commissions'
-      preLoaderRoute: typeof CommissionsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppCommissionsRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/disbursements': {
-      id: '/disbursements'
+    '/_app/disbursements': {
+      id: '/_app/disbursements'
       path: '/disbursements'
       fullPath: '/disbursements'
-      preLoaderRoute: typeof DisbursementsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppDisbursementsRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/leads': {
-      id: '/leads'
+    '/_app/leads': {
+      id: '/_app/leads'
       path: '/leads'
       fullPath: '/leads'
-      preLoaderRoute: typeof LeadsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppLeadsRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/reports': {
-      id: '/reports'
+    '/_app/reports': {
+      id: '/_app/reports'
       path: '/reports'
       fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/sanctions': {
-      id: '/sanctions'
+    '/_app/sanctions': {
+      id: '/_app/sanctions'
       path: '/sanctions'
       fullPath: '/sanctions'
-      preLoaderRoute: typeof SanctionsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppSanctionsRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/settings': {
-      id: '/settings'
+    '/_app/settings': {
+      id: '/_app/settings'
       path: '/settings'
       fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/sourcing-partners': {
-      id: '/sourcing-partners'
+    '/_app/sourcing-partners': {
+      id: '/_app/sourcing-partners'
       path: '/sourcing-partners'
       fullPath: '/sourcing-partners'
-      preLoaderRoute: typeof SourcingPartnersRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppSourcingPartnersRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/team': {
-      id: '/team'
+    '/_app/team': {
+      id: '/_app/team'
       path: '/team'
       fullPath: '/team'
-      preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppTeamRouteImport
+      parentRoute: typeof AppRoute
     }
   }
 }
 
+interface AppRouteChildren {
+  AppApplicationsRoute: typeof AppApplicationsRoute
+  AppCommissionsRoute: typeof AppCommissionsRoute
+  AppDisbursementsRoute: typeof AppDisbursementsRoute
+  AppLeadsRoute: typeof AppLeadsRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSanctionsRoute: typeof AppSanctionsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppSourcingPartnersRoute: typeof AppSourcingPartnersRoute
+  AppTeamRoute: typeof AppTeamRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppApplicationsRoute: AppApplicationsRoute,
+  AppCommissionsRoute: AppCommissionsRoute,
+  AppDisbursementsRoute: AppDisbursementsRoute,
+  AppLeadsRoute: AppLeadsRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSanctionsRoute: AppSanctionsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppSourcingPartnersRoute: AppSourcingPartnersRoute,
+  AppTeamRoute: AppTeamRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ApplicationsRoute: ApplicationsRoute,
-  CommissionsRoute: CommissionsRoute,
-  DisbursementsRoute: DisbursementsRoute,
-  LeadsRoute: LeadsRoute,
-  ReportsRoute: ReportsRoute,
-  SanctionsRoute: SanctionsRoute,
-  SettingsRoute: SettingsRoute,
-  SourcingPartnersRoute: SourcingPartnersRoute,
-  TeamRoute: TeamRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
