@@ -27,8 +27,8 @@ export function StatCard({
         </div>
         <div
           className={cn(
-            "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
-            tone === "brand" ? "bg-accent text-navy" : "bg-primary text-primary-foreground",
+            "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl shadow-card",
+            tone === "brand" ? "gradient-brand-bg text-white" : "bg-primary text-primary-foreground",
           )}
         >
           <Icon className="h-5 w-5" />

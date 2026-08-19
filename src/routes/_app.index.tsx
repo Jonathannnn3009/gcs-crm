@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Users, FileText, BadgeCheck, Landmark, Wallet } from "lucide-react";
+import { Users, FileText, BadgeCheck, Landmark, Wallet, ArrowUpRight } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, Pie, PieChart, Cell, XAxis } from "recharts";
 
-import { PageHeader } from "@/components/crm/page-header";
 import { StatCard } from "@/components/crm/stat-card";
 import { StatusBadge } from "@/components/crm/status-badge";
 import {
@@ -34,10 +33,48 @@ const mixColors = ["var(--brand)", "var(--navy)", "var(--chart-3)", "var(--chart
 
 function Dashboard() {
   const totalCommission = commissions.reduce((s, c) => s + c.totalCommission, 0);
+  const monthDisbursed = monthlyVolume[monthlyVolume.length - 1]?.disbursed ?? 0;
+  const monthTrend =
+    monthlyVolume.length > 1
+      ? Math.round(
+          ((monthDisbursed - monthlyVolume[monthlyVolume.length - 2].disbursed) /
+            monthlyVolume[monthlyVolume.length - 2].disbursed) *
+            100,
+        )
+      : 0;
 
   return (
     <>
-      <PageHeader title="Dashboard" description="Business snapshot across every stage of the loan pipeline." />
+      <div className="gradient-hero-bg relative overflow-hidden rounded-3xl px-6 py-7 shadow-float sm:px-8 sm:py-9">
+        <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-white/60">
+              Growth Capital Services
+            </p>
+            <h1 className="mt-2 max-w-md text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              Business snapshot across every stage of the loan pipeline.
+            </h1>
+          </div>
+          <div className="flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm">
+            <div>
+              <p className="text-xs font-medium text-white/60">Disbursed this month</p>
+              <p className="text-2xl font-semibold text-white">₹{monthDisbursed} Cr</p>
+            </div>
+            {monthTrend !== 0 ? (
+              <span
+                className={
+                  "ml-2 flex items-center gap-0.5 rounded-full px-2 py-1 text-xs font-semibold " +
+                  (monthTrend > 0 ? "bg-emerald-400/20 text-emerald-300" : "bg-rose-400/20 text-rose-300")
+                }
+              >
+                <ArrowUpRight className={"h-3 w-3" + (monthTrend < 0 ? " rotate-90" : "")} />
+                {Math.abs(monthTrend)}%
+              </span>
+            ) : null}
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <StatCard label="Leads" value={String(leads.length)} icon={Users} trend="+2 this week" />
         <StatCard label="Applications" value={String(applications.length)} icon={FileText} />

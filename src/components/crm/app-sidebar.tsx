@@ -69,7 +69,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader>
         <div className="flex items-center gap-2 px-2 py-1.5">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
+          <div className="gradient-brand-bg flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold text-white shadow-card">
             GC
           </div>
           <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">

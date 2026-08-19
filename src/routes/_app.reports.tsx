@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download } from "lucide-react";
+import { Download, SlidersHorizontal } from "lucide-react";
 
 import { PageHeader } from "@/components/crm/page-header";
 import { StatusBadge } from "@/components/crm/status-badge";
@@ -34,64 +34,85 @@ function Reports() {
         }
       />
       <Card className="surface-card">
-        <CardContent className="p-4">
-          <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
-            <Select defaultValue="leads">
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="leads">Leads</SelectItem>
-                <SelectItem value="applications">Applications</SelectItem>
-                <SelectItem value="sanctions">Sanctions</SelectItem>
-                <SelectItem value="disbursements">Disbursements</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select defaultValue="this-month">
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="this-month">This Month</SelectItem>
-                <SelectItem value="last-month">Last Month</SelectItem>
-                <SelectItem value="custom">Custom Range</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select defaultValue="all">
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Statuses</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="done">Done</SelectItem>
-                <SelectItem value="rejected">Rejected</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select defaultValue="all">
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Loan Types</SelectItem>
-                <SelectItem value="home">Home Loan</SelectItem>
-                <SelectItem value="business">Business Loan</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select defaultValue="all">
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Teams</SelectItem>
-                <SelectItem value="mumbai">Mumbai</SelectItem>
-                <SelectItem value="thane">Thane</SelectItem>
-                <SelectItem value="pune">Pune</SelectItem>
-              </SelectContent>
-            </Select>
+        <CardContent className="space-y-5 p-5">
+          <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-4">
+            <div className="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <SlidersHorizontal className="h-3.5 w-3.5" />
+              Filters
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+              <div className="space-y-1">
+                <label className="text-xs text-muted-foreground">Type</label>
+                <Select defaultValue="leads">
+                  <SelectTrigger className="bg-card">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="leads">Leads</SelectItem>
+                    <SelectItem value="applications">Applications</SelectItem>
+                    <SelectItem value="sanctions">Sanctions</SelectItem>
+                    <SelectItem value="disbursements">Disbursements</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs text-muted-foreground">Range</label>
+                <Select defaultValue="this-month">
+                  <SelectTrigger className="bg-card">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="this-month">This Month</SelectItem>
+                    <SelectItem value="last-month">Last Month</SelectItem>
+                    <SelectItem value="custom">Custom Range</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs text-muted-foreground">Status</label>
+                <Select defaultValue="all">
+                  <SelectTrigger className="bg-card">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Statuses</SelectItem>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="done">Done</SelectItem>
+                    <SelectItem value="rejected">Rejected</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs text-muted-foreground">Loan Type</label>
+                <Select defaultValue="all">
+                  <SelectTrigger className="bg-card">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Loan Types</SelectItem>
+                    <SelectItem value="home">Home Loan</SelectItem>
+                    <SelectItem value="business">Business Loan</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs text-muted-foreground">Team</label>
+                <Select defaultValue="all">
+                  <SelectTrigger className="bg-card">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Teams</SelectItem>
+                    <SelectItem value="mumbai">Mumbai</SelectItem>
+                    <SelectItem value="thane">Thane</SelectItem>
+                    <SelectItem value="pune">Pune</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
           </div>
 
-          <div className="mb-2 flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-foreground">Leads</span>
             <span className="text-xs text-muted-foreground">Showing {leads.length} of {leads.length} records</span>
           </div>
