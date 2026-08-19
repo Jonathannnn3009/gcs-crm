@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app.index'
 import { Route as AppApplicationsRouteImport } from './routes/_app.applications'
+import { Route as AppBlankRouteImport } from './routes/_app.blank'
 import { Route as AppCommissionsRouteImport } from './routes/_app.commissions'
 import { Route as AppDisbursementsRouteImport } from './routes/_app.disbursements'
 import { Route as AppLeadsRouteImport } from './routes/_app.leads'
@@ -33,6 +34,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppApplicationsRoute = AppApplicationsRouteImport.update({
   id: '/applications',
   path: '/applications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBlankRoute = AppBlankRouteImport.update({
+  id: '/blank',
+  path: '/blank',
   getParentRoute: () => AppRoute,
 } as any)
 const AppCommissionsRoute = AppCommissionsRouteImport.update({
@@ -79,6 +85,7 @@ const AppTeamRoute = AppTeamRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/applications': typeof AppApplicationsRoute
+  '/blank': typeof AppBlankRoute
   '/commissions': typeof AppCommissionsRoute
   '/disbursements': typeof AppDisbursementsRoute
   '/leads': typeof AppLeadsRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/applications': typeof AppApplicationsRoute
+  '/blank': typeof AppBlankRoute
   '/commissions': typeof AppCommissionsRoute
   '/disbursements': typeof AppDisbursementsRoute
   '/leads': typeof AppLeadsRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteWithChildren
   '/_app/applications': typeof AppApplicationsRoute
+  '/_app/blank': typeof AppBlankRoute
   '/_app/commissions': typeof AppCommissionsRoute
   '/_app/disbursements': typeof AppDisbursementsRoute
   '/_app/leads': typeof AppLeadsRoute
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/applications'
+    | '/blank'
     | '/commissions'
     | '/disbursements'
     | '/leads'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/applications'
+    | '/blank'
     | '/commissions'
     | '/disbursements'
     | '/leads'
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_app'
     | '/_app/applications'
+    | '/_app/blank'
     | '/_app/commissions'
     | '/_app/disbursements'
     | '/_app/leads'
@@ -179,6 +191,13 @@ declare module '@tanstack/react-router' {
       path: '/applications'
       fullPath: '/applications'
       preLoaderRoute: typeof AppApplicationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/blank': {
+      id: '/_app/blank'
+      path: '/blank'
+      fullPath: '/blank'
+      preLoaderRoute: typeof AppBlankRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/commissions': {
@@ -242,6 +261,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppApplicationsRoute: typeof AppApplicationsRoute
+  AppBlankRoute: typeof AppBlankRoute
   AppCommissionsRoute: typeof AppCommissionsRoute
   AppDisbursementsRoute: typeof AppDisbursementsRoute
   AppLeadsRoute: typeof AppLeadsRoute
@@ -255,6 +275,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppApplicationsRoute: AppApplicationsRoute,
+  AppBlankRoute: AppBlankRoute,
   AppCommissionsRoute: AppCommissionsRoute,
   AppDisbursementsRoute: AppDisbursementsRoute,
   AppLeadsRoute: AppLeadsRoute,

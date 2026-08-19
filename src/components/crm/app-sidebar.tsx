@@ -86,7 +86,7 @@ export function AppSidebar() {
               <SidebarMenu>
                 {group.items.map((item) => (
                   <SidebarMenuItem key={item.to}>
-                    <SidebarMenuButton asChild isActive={pathname === item.to} tooltip={item.title}>
+                    <SidebarMenuButton asChild isActive={pathname === item.to}>
                       <Link to={item.to} onClick={() => isMobile && setOpenMobile(false)}>
                         <item.icon />
                         <span>{item.title}</span>

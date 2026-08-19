@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sanity Test</title>
+    <style>
+      body { font-family: sans-serif; padding: 24px; }
+      button { display: block; margin: 8px 0; padding: 10px 16px; font-size: 16px; }
+      #log { margin-top: 20px; padding: 12px; background: #eee; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>Sanity Test — No React, No Libraries</h1>
+    <p>If this page hangs when you click, it's not the CRM app — it's your device/network/browser.</p>
+    <button onclick="log('Button 1 clicked at ' + new Date().toLocaleTimeString())">Click me 1</button>
+    <button onclick="location.hash = '/leads-test'; log('Navigated to #/leads-test')">
+      Simulate nav to Leads
+    </button>
+    <button onclick="log('Button 3 clicked at ' + new Date().toLocaleTimeString())">Click me 3</button>
+    <div id="log">Log will appear here...</div>
+    <script>
+      function log(msg) {
+        document.getElementById("log").textContent += "\n" + msg;
+      }
+      log("Page loaded at " + new Date().toLocaleTimeString());
+    </script>
+  </body>
+</html>
