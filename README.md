@@ -4,6 +4,10 @@ Internal CRM for Growth Capital Services — leads, applications, sanctions, dis
 
 Built to share the exact design system as the [GCS website](https://github.com/sarvinit25/secure-sums-site) (TanStack Start, Tailwind v4, shadcn/ui — same brand colors, fonts and components), so the two apps feel like one product.
 
+## Live preview
+
+[jonathannnn3009.github.io/gcs-crm](https://jonathannnn3009.github.io/gcs-crm/) — static build with mock data, deployed from the `gh-pages` branch. Redeploy with `npm run deploy:pages`.
+
 ## Status
 
 Prototype. UI and workflows are built out with mock data; no backend is wired up yet (see the project proposal for the planned Supabase-backed data layer).

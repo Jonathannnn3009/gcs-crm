@@ -8,6 +8,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "build:pages": "vite build --config vite.pages.config.ts",
+    "deploy:pages": "npm run build:pages && cp dist-pages/index.html dist-pages/404.html && touch dist-pages/.nojekyll && git -C dist-pages init -q -b gh-pages 2>/dev/null; git -C dist-pages add -A && git -C dist-pages commit -q -m Deploy && git -C dist-pages push -f https://github.com/Jonathannnn3009/gcs-crm.git gh-pages",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
